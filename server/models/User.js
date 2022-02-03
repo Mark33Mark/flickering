@@ -3,7 +3,7 @@ const { Schema, model } = require( "mongoose" );
 const bcrypt = require( "bcrypt" );
 
 // import schema from Tracker.js
-const trackerSchema = require( "./Tracker" );
+const questionsSchema = require( "./Questions" );
 
 const userSchema = new Schema( 
   {
@@ -22,6 +22,12 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    questions: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Questions',
+      },
+    ],
   },
   // set this to use virtual below
   {
@@ -39,7 +45,7 @@ userSchema.pre( "save", async function ( next ) {
     this.password = await bcrypt.hash( this.password, saltRounds );
   }
 
-  next(  );
+  next();
 } );
 
 
@@ -50,9 +56,9 @@ userSchema.methods.isCorrectPassword = async function ( password ) {
 };
 
 
-// userSchema.virtual( "testCount" ).get( function () {
-//   return this.answers.length;
-// });
+userSchema.virtual( "testCount" ).get( function () {
+  return this.questions.length;
+});
 
 const User = model( "User", userSchema );
 module.exports = User;

@@ -57,19 +57,28 @@ const Question = ({ title, subtitle }) => {
 
 const Tracker = () => {
 
-  const [ addTest, { error } ] = useMutation( ADD_TEST );
+  const [ addTest ] = useMutation( ADD_TEST );
+
 
   const handleButtonClick = async ( event ) => {
     event.preventDefault();
-    
+
+
     const validateQuestionairre = (!answerArray.includes(""))
 
     if (!validateQuestionairre){ 
       return alert("Please answer all questions before pressing 'submit'.")
     }
 
+
     try {
-        const { data } = addTest({ variables: {answers: answerArray}, });
+        const { data } = addTest({ 
+          variables: {
+            answers: answerArray,
+            user: Auth.getProfile().data.username,
+          }, 
+        
+        });
 
     } catch (err) {
 
@@ -77,10 +86,6 @@ const Tracker = () => {
 
     }
   };
-    
-
-    // get token
-    // const token = Auth.loggedIn() ? Auth.getToken() : null;
 
   return ( 
     <>

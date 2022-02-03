@@ -2,8 +2,7 @@
 const { Schema, model } = require( "mongoose" );
 const dateFormat = require('../utils/dateFormat');
 
-const trackerSchema = new Schema({
-
+const questionsSchema = new Schema({
   answers: 
   [
     {
@@ -11,6 +10,11 @@ const trackerSchema = new Schema({
       required: true,
     }
   ],
+  user: 
+  {
+    type: String,
+    required: true,
+  },
   createdAt: 
   {
     type: Date,
@@ -37,5 +41,5 @@ const trackerSchema = new Schema({
   ],
 });
 
-const Tracker = model( "Tracker", trackerSchema );
-module.exports = Tracker;
+const Questions = model( "Questions", questionsSchema );
+module.exports = Questions;

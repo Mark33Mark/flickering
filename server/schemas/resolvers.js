@@ -1,6 +1,6 @@
 
 const { AuthenticationError } = require( "apollo-server-express" );
-const { User, Tracker }       = require( "../models" );
+const { User, Questions }     = require( "../models" );
 const { signToken }           = require( "../utils/auth" );
 
 
@@ -8,6 +8,10 @@ const resolvers = {
 
   Query: {
 
+    user: async (parent, { username }) => {
+      return User.findOne({ username }).populate('questions');
+    },
+    
     me: async ( parent, args, context ) => {
       if ( context.user ) {
           return await User.findOne( { _id: context.user._id } )
@@ -45,8 +49,15 @@ const resolvers = {
       },
 
       addTest: async ( parent, { answers }, context ) => {
-        return Tracker,create({ answers });
-
+        
+        if (context.user) {
+          const answered = await Questions.create({ 
+            answers,
+            user: context.user.username,
+          });
+        return answered;
+        }
+        throw new AuthenticationError("Please log in to submit your emotion status.");
     },
 
   }
