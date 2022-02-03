@@ -72,6 +72,7 @@ const Tracker = () => {
 
 
     try {
+        // eslint-disable-next-line
         const { data } = addTest({ 
           variables: {
             answers: answerArray,
@@ -97,7 +98,7 @@ const Tracker = () => {
             {Auth.getProfile().data.username}'s Emotion Tracker 
           </h3>
 
-          <div className="Questions" style={{height:"600px"}}>
+          <div className="Questions" style={{height:"auto"}}>
             <Question title={"Q1"} subtitle={". I'm feeling satisfied with my sleep?"} />
             <Question title={"Q2"} subtitle={". If asked how I'm feeling, I can easily identify my emotions?"} />
             <Question title={"Q3"} subtitle={". Feeling relaxed, not stressed or anxious?"} />
@@ -105,12 +106,14 @@ const Tracker = () => {
             <Question title={"Q5"} subtitle={". Feeling close to other people?"} />
           </div>
 
+          <div style={{maxWidth:"450px", margin:"0 auto",}}>
+            <button className="button-tracker" onClick={handleButtonClick}>
+                <span>Submit</span>
+            </button>
+          </div>
+
       </div>
-      <div style={{maxWidth:"450px", margin:"0 auto",}}>
-        <button className="button-tracker" onClick={handleButtonClick}>
-            <span>Submit</span>
-        </button>
-      </div>
+
     </>
   )
 }

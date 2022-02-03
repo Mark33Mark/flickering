@@ -40,24 +40,24 @@ import React from "react";
             <div
             className={icon[btnId-1]}
             style={{
-                height: "80px",
-                width: "80px",
-                fontSize: "3rem",
-                textAlign: "center",
-                borderRadius: "none",
-                margin: "1rem 0",
-                color: `${selected === btnId ? "orange" : "white"}`,
-                textShadow: `${selected === btnId ? "0 0 0.75rem orange" : "none"}`,
-                cursor: "pointer",
-            }}
+                    height: "80px",
+                    width: "80px",
+                    fontSize: "3rem",
+                    textAlign: "center",
+                    borderRadius: "none",
+                    margin: "1rem 0",
+                    color: `${selected === btnId ? "orange" : "white"}`,
+                    textShadow: `${selected === btnId ? "0 0 0.75rem orange" : "none"}`,
+                    cursor: "pointer",
+                }}
             onClick={() => onClickHandler(btnId)}
             >
             <p 
-                style={{
-                fontSize:"0.9rem", 
-                fontFamily:"Arial", 
-                fontWeight:"500",
-                padding: "1rem 0",
+            style={{
+                    fontSize:"0.9rem", 
+                    fontFamily:"Arial", 
+                    fontWeight:"500",
+                    padding: "1rem 0",
                 }}
             >
                 {response[btnId-1]}
