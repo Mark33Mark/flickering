@@ -44,6 +44,13 @@ const resolvers = {
           return { token, user };
       },
 
+      addTest: async ( parent, args, context ) => {
+        
+        console.log( args, context );
+
+
+    },
+
   }
 
 };

@@ -24,3 +24,14 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const ADD_TEST = gql`
+  mutation addTest( $answers: [Int]!, $notes: String!) {
+    addTest( answers: $answers, notes: $notes ) {
+      _id
+      dateTaken
+      answers
+      notes
+    }
+  }
+`;

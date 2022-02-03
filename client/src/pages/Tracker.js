@@ -1,9 +1,12 @@
 
 import React,  { useEffect, useState }   from "react";
-import Navbar                 from "../components/Navbar";
+import Navbar                            from "../components/Navbar";
 
-import QuestionButtons        from "../components/QuestionButtons";
-import Auth                   from "../utils/auth";
+import { useMutation }                    from "@apollo/client";
+import { ADD_TEST }                       from "../utils/mutations";
+
+import QuestionButtons                    from "../components/QuestionButtons";
+import Auth                               from "../utils/auth";
 
 
 const answerArray = [0, 0, 0, 0, 0];
@@ -54,7 +57,14 @@ const Question = ({ title, subtitle }) => {
 
 const Tracker = () => {
 
-  const handleButtonClick = ( event ) => {
+  // set state for alert
+  const [ showAlert, setShowAlert ] = useState( false );
+
+  const [ addTest ] = useMutation( ADD_TEST );
+
+
+
+  const handleButtonClick = async ( event ) => {
     event.preventDefault();
     
     const validateQuestionairre = (!answerArray.includes(""))
@@ -62,11 +72,23 @@ const Tracker = () => {
     if (!validateQuestionairre){ 
       alert("Please answer all questions before pressing 'submit'.")
     }
-    
-    console.log(validateQuestionairre)
+
+    try {
+      const { data } = await addTest({ 
+        variables: { answerArray },
+      });
+
+      console.log(data);
 
 
+    } catch ( err ) {
+
+      console.error( err );
+      setShowAlert( true );
+    }
+    handleButtonClick();
   };
+    
 
     // get token
     // const token = Auth.loggedIn() ? Auth.getToken() : null;
