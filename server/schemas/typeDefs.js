@@ -11,9 +11,14 @@ const typeDefs = gql`
   }
   type Tracker {
     _id: ID
-    dateTaken: String,
-    answers: [Int] 
-    notes: String
+    answers: [Int!]! 
+    createdAt: String,
+    notes: [Note]
+  }
+  type Note {
+    _id: ID
+    noteText: String
+    createdAt: String
   }
   type Auth {
     token: ID!
@@ -25,7 +30,7 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addTest(answers: [Int]!, notes: String! ): User
+    addTest(answers: [Int!]! ): Tracker
   }
 `;
 

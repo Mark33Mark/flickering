@@ -26,12 +26,15 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_TEST = gql`
-  mutation addTest( $answers: [Int]!, $notes: String!) {
-    addTest( answers: $answers, notes: $notes ) {
+  mutation addTest( $answers: [Int!]!) {
+    addTest( answers: $answers ) {
       _id
-      dateTaken
       answers
-      notes
+      createdAt
+      notes{
+        _id
+        noteText
+      }
     }
   }
 `;

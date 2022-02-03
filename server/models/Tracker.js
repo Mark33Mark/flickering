@@ -1,20 +1,41 @@
 
-const { Schema } = require( "mongoose" );
-const userSchema = require( "./User" );
+const { Schema, model } = require( "mongoose" );
+const dateFormat = require('../utils/dateFormat');
 
 const trackerSchema = new Schema({
-  dateTaken: {
-    type: Date,
-    default: Date.now
-  },
-  answers: [{
-    type: Number,
-    required: true,
-  }
+
+  answers: 
+  [
+    {
+      type: Number,
+      required: true,
+    }
   ],
-  notes:{
-    type: String,
-  }
+  createdAt: 
+  {
+    type: Date,
+    default: Date.now,
+    get: (timestamp) => dateFormat(timestamp),
+  },
+  notes:
+  [
+      {
+      noteText: 
+      {
+        type: String,
+        required: true,
+        minlength: 1,
+        maxlength: 300,
+      },
+      createdAt: 
+      {
+        type: Date,
+        default: Date.now,
+        get: (timestamp) => dateFormat(timestamp),
+      },
+    },
+  ],
 });
 
-module.exports = trackerSchema;
+const Tracker = model( "Tracker", trackerSchema );
+module.exports = Tracker;

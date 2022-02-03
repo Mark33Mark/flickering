@@ -22,7 +22,6 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    tests: [trackerSchema],
   },
   // set this to use virtual below
   {
@@ -51,10 +50,9 @@ userSchema.methods.isCorrectPassword = async function ( password ) {
 };
 
 
-userSchema.virtual( "testCount" ).get( function () {
-  return this.tests.length;
-});
+// userSchema.virtual( "testCount" ).get( function () {
+//   return this.answers.length;
+// });
 
 const User = model( "User", userSchema );
-
 module.exports = User;

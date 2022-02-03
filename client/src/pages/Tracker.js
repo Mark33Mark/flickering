@@ -2,8 +2,8 @@
 import React,  { useEffect, useState }   from "react";
 import Navbar                            from "../components/Navbar";
 
-import { useMutation }                    from "@apollo/client";
-import { ADD_TEST }                       from "../utils/mutations";
+// import { useMutation }                    from "@apollo/client";
+// import { ADD_TEST }                       from "../utils/mutations";
 
 import QuestionButtons                    from "../components/QuestionButtons";
 import Auth                               from "../utils/auth";
@@ -58,10 +58,9 @@ const Question = ({ title, subtitle }) => {
 const Tracker = () => {
 
   // set state for alert
-  const [ showAlert, setShowAlert ] = useState( false );
+  // const [ showAlert, setShowAlert ] = useState( false );
 
-  const [ addTest ] = useMutation( ADD_TEST );
-
+  // const [ addTest ] = useMutation( ADD_TEST );
 
 
   const handleButtonClick = async ( event ) => {
@@ -73,20 +72,6 @@ const Tracker = () => {
       alert("Please answer all questions before pressing 'submit'.")
     }
 
-    try {
-      const { data } = await addTest({ 
-        variables: { answerArray },
-      });
-
-      console.log(data);
-
-
-    } catch ( err ) {
-
-      console.error( err );
-      setShowAlert( true );
-    }
-    handleButtonClick();
   };
     
 
