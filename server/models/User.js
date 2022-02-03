@@ -2,7 +2,6 @@
 const { Schema, model } = require( "mongoose" );
 const bcrypt = require( "bcrypt" );
 
-// import schema from Tracker.js
 const questionsSchema = require( "./Questions" );
 
 const userSchema = new Schema( 
@@ -25,7 +24,7 @@ const userSchema = new Schema(
     questions: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Questions',
+        ref: "Questions",
       },
     ],
   },

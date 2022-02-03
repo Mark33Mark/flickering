@@ -2,13 +2,16 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
 
-import Landing      from "./pages/Landing";
-import Tracker      from "./pages/Tracker";
-import Advisor      from "./pages/Advisor";
-import Login        from "./pages/Login";
-import Signup       from "./pages/Signup";
+import { setContext }     from "@apollo/client/link/context";
+
+import Login              from "./pages/Login";
+import Signup             from "./pages/Signup";
+import Landing            from "./pages/Landing";
+import Questionnaire      from "./pages/Questionnaire";
+import Advisor            from "./pages/Advisor";
+import NoMatch            from "./pages/NoMatch";
+
 
 
 const httpLink = createHttpLink({
@@ -36,27 +39,22 @@ const client = new ApolloClient( {
 });
 
 
-
 function App() {
 
   return ( 
-
     <ApolloProvider client={client}>
       
       <Router>
 
         <>
-        {/* Switch tells the router to stop matching further once 
-            it matches a route. */}
         <Switch>
 
               <Route exact path="/" component={Landing} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
-
-              <Route exact path="/tracker" component={Tracker} />
+              <Route exact path="/questions" component={Questionnaire} />
               <Route exact path="/advisor" component={Advisor} />
-              <Route render={() => <h1 className="display-2">I can't find that page.  Please check the web address in your browser.</h1>} />
+              <Route component={NoMatch} />
             
           </Switch>
 

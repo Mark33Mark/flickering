@@ -22,7 +22,7 @@ if (loading) {
     return <div>Loading...</div>;
 }
 
-const anyoneLoggedIn = !user?.username ? "Visitor": user.username;
+const anyoneLoggedIn = !user?.username ? "Hi Visitor": `Welcome ${user.username}`;
 
 // =====================================================================
 
@@ -43,7 +43,7 @@ return (
                     </p>
                 
                 <div style={{border:"0.25rem solid white", borderRadius:"0.5rem", height:"300px", margin:"1rem", position:"relative"}}> 
-                    <p style={{textAlign:"center", fontSize:"2rem", padding:"0.25rem 1rem"}}> Welcome {anyoneLoggedIn}</p>
+                    <p style={{textAlign:"center", fontSize:"2rem", padding:"0.25rem 1rem"}}> {anyoneLoggedIn}</p>
                     <p style={{textAlign:"center", fontSize:"1rem", padding:"0.25rem 1rem"}}> 
                         Our moods fluctuate / flicker.  <br />
                         This is a space to track your emotions  to identify and help manage those triggers that can cause 
@@ -59,7 +59,7 @@ return (
                         </div>
                     ) : (
                     <div style={{textAlign: "center", paddingTop:"0.25rem"}}>
-                        <Nav.Link style={{display:"inline", color:"white"}} as={Link} to="/tracker">Tracker</Nav.Link> | 
+                        <Nav.Link style={{display:"inline", color:"white"}} as={Link} to="/questions">Get Started</Nav.Link> | 
                         <Nav.Link style={{display:"inline", color:"white"}} onClick={Auth.logout}>Logout</Nav.Link>
                     </div>
                     )

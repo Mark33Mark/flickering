@@ -1,9 +1,9 @@
 
-import React from "react";
-import { Link } from "react-router-dom";
+import React                      from "react";
+import { Link }                   from "react-router-dom";
 import { Navbar, Nav, Container } from "react-bootstrap";
 
-import Auth         from "../utils/auth";
+import Auth                       from "../utils/auth";
 
 const AppNavbar = () => {
 
@@ -28,8 +28,8 @@ const AppNavbar = () => {
                 {Auth.loggedIn() 
                 ? ( 
                     <>
-                      <Nav.Link style={{cursor: "pointer"}} as={Link} to="/tracker">
-                        Tracker
+                      <Nav.Link style={{cursor: "pointer"}} as={Link} to="/questions">
+                        Questions
                       </Nav.Link>
                       <Nav.Link style={{cursor: "pointer"}} as={Link} to="/advisor">
                         Advisor

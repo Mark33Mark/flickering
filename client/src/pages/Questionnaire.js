@@ -1,12 +1,14 @@
 
-import React,  { useEffect, useState }   from "react";
-import Navbar                            from "../components/Navbar";
+import React,  { useEffect, useState }           from "react";
+import Navbar                                    from "../components/Navbar";
+import { Redirect }                              from "react-router-dom";
 
-import { useMutation }                    from "@apollo/client";
-import { ADD_TEST }                       from "../utils/mutations";
+import { useMutation }                           from "@apollo/client";
+import { ADD_TEST }                              from "../utils/mutations";
 
-import QuestionButtons                    from "../components/QuestionButtons";
-import Auth                               from "../utils/auth";
+import QuestionButtons                           from "../components/QuestionButtons";
+import history                                   from '../utils/history';
+import Auth                                      from "../utils/auth";
 
 
 const answerArray = [0, 0, 0, 0, 0];
@@ -55,14 +57,12 @@ const Question = ({ title, subtitle }) => {
 // ===========================================================
 
 
-const Tracker = () => {
+const Questionnaire = () => {
 
   const [ addTest ] = useMutation( ADD_TEST );
-
-
   const handleButtonClick = async ( event ) => {
-    event.preventDefault();
 
+    event.preventDefault();
 
     const validateQuestionairre = (!answerArray.includes(""))
 
@@ -77,15 +77,17 @@ const Tracker = () => {
           variables: {
             answers: answerArray,
             user: Auth.getProfile().data.username,
-          }, 
-        
+          },      
         });
+        // window.history.push("/advisor");
+        // window.history.go("/advisor")
+        window.location.href= window.location.origin +  "/advisor";
+
 
     } catch (err) {
-
       console.error(err);
-
     }
+  //  return( <Redirect to="/advisor" />);
   };
 
   return ( 
@@ -119,4 +121,4 @@ const Tracker = () => {
 }
 
 
-export default Tracker
+export default Questionnaire
