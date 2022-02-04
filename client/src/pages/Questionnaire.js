@@ -1,13 +1,11 @@
 
 import React,  { useEffect, useState }           from "react";
 import Navbar                                    from "../components/Navbar";
-import { Redirect }                              from "react-router-dom";
 
 import { useMutation }                           from "@apollo/client";
 import { ADD_TEST }                              from "../utils/mutations";
 
 import QuestionButtons                           from "../components/QuestionButtons";
-import history                                   from '../utils/history';
 import Auth                                      from "../utils/auth";
 
 
@@ -81,13 +79,12 @@ const Questionnaire = () => {
         });
         // window.history.push("/advisor");
         // window.history.go("/advisor")
-        window.location.href= window.location.origin +  "/advisor";
+        window.location.href= window.location.origin +  "/today";
 
 
     } catch (err) {
       console.error(err);
     }
-  //  return( <Redirect to="/advisor" />);
   };
 
   return ( 

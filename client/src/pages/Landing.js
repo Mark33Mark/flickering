@@ -19,10 +19,11 @@ const { loading, data } = useQuery(userParam ? QUERY_USER : GET_ME, {
 const user = data?.me || data?.user || {};
     
 if (loading) {
-    return <div>Loading...</div>;
+    return ( <div>Loading... </div> );
 }
 
 const anyoneLoggedIn = !user?.username ? "Hi Visitor": `Welcome ${user.username}`;
+
 
 // =====================================================================
 

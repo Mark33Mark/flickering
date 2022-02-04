@@ -2,7 +2,7 @@
 import React, { useState }      from "react";
 import { Form, Button, Alert }  from "react-bootstrap";
 import { useMutation }          from "@apollo/client";
-import { Link }                 from "react-router-dom";
+import { Link }       from "react-router-dom";
 import { Nav }                  from "react-bootstrap";
 
 import { LOGIN_USER }           from "../utils/mutations";
@@ -38,8 +38,9 @@ const LoginForm = ( props ) => {
       const { data } = await login({
         variables: { ...userFormData },        
       });
-
+      
       Auth.login(  data.login.token  );
+      window.location.href= window.location.origin +  "/questions";
 
     } catch ( e ) {
       console.error( e );
@@ -50,6 +51,7 @@ const LoginForm = ( props ) => {
       email: "",
       password: "",
     });
+
   };
 
 

@@ -1,4 +1,4 @@
-![Mark Watson](./assets/banner.jpg)
+![Mark Watson](./assets/banner_updated.jpg)
 
 [![webpage](./assets/myWebpage.png)](https://flickering.herokuapp.com)  [![github](./assets/PNG_github_commits_logo.png)](https://github.com/Mark33Mark/flickering)  
 
