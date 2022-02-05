@@ -50,6 +50,9 @@ const SignupForm = () => {
       } );
 
       Auth.login(  data.addUser.token  );
+      
+      // using this method as <Redirect> was not working
+      window.location.href= window.location.origin +  "/questions";
 
     } catch ( err ) {
 
@@ -64,18 +67,23 @@ const SignupForm = () => {
     } );
   };
 
+  const refreshPage = () =>  { 
+    window.location.href = window.location.origin +  "/";
+  }; 
+
+
   return ( 
     <>      
       <div style={{backgroundColor:"black", height:"100vh", color: "white", maxWidth:"400px", margin: "0 auto"}}> 
-        <Nav.Link as={Link} to="/">
+        <Link to= "/" onClick={ refreshPage }>
           <img
               alt=""
-              src="./logo512.png"
+              src="../images/logo512.png"
               width="100%"
               height="auto"
               style={{position:"relative"}}
           />
-        </Nav.Link>
+        </Link>
         <p style={{position: "absolute", marginTop:"-6rem", paddingLeft:"2rem", width:"350px"}}>  / ˈflIk.ər. Iŋ / <br />
             adjective: appearing for a short time before disappearing again.
         </p>
@@ -85,11 +93,6 @@ const SignupForm = () => {
           <div className="signup-form"> 
 
             <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-              
-              {/* show alert if server data is bad */}
-              <Alert dismissible onClose={() => setShowAlert( false )} show={showAlert} variant="danger">
-                Sorry, I am unable to sign you up.  Please try again.
-              </Alert>
 
               <Form.Group>
                 <Form.Label htmlFor="username">Username</Form.Label>
@@ -137,6 +140,10 @@ const SignupForm = () => {
                 >
                 Submit
               </Button>
+              {/* show alert if server data is bad */}
+              <Alert dismissible onClose={() => setShowAlert( false )} show={showAlert} variant="danger">
+                Sorry, I am unable to sign you up.  Possibly your chosen email and / or username already exists. Please try again.
+              </Alert>
             </Form>
           </div>
 

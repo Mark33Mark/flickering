@@ -9,15 +9,27 @@ const resolvers = {
   Query: {
 
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate('questions');
+      return await User.findOne({ username }).populate('questions');
     },
+
+    getUsers: async () => {
+      return await User.find({}).populate('questions');
+    },
+
+    getTests: async ( parent, { username }) => {
+      const params = username ? { username } : {};
+      return await Questions.find( params ).sort({ createdAt: -1 });
+    },
+    
+    // getTests: async () => {
+    //   return await Questions.find({}).sort({ createdAt: -1 });
+    // },
     
     me: async ( parent, args, context ) => {
       if ( context.user ) {
           return await User.findOne( { _id: context.user._id } )
                             .select( "-password" );
       }
-      
       throw new AuthenticationError( "Not logged in" );
     }         
   },
@@ -55,6 +67,12 @@ const resolvers = {
             answers,
             user: context.user.username,
           });
+
+          await User.findOneAndUpdate(
+            { _id: context.user._id },
+            { $addToSet: { questions: answered._id } }
+          );
+
         return answered;
         }
         throw new AuthenticationError("Please log in to submit your emotion status.");

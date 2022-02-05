@@ -68,7 +68,6 @@ const Questionnaire = () => {
       return alert("Please answer all questions before pressing 'submit'.")
     }
 
-
     try {
         // eslint-disable-next-line
         const { data } = addTest({ 
@@ -77,8 +76,8 @@ const Questionnaire = () => {
             user: Auth.getProfile().data.username,
           },      
         });
-        // window.history.push("/advisor");
-        // window.history.go("/advisor")
+
+        // using this method as <Redirect> was not working
         window.location.href= window.location.origin +  "/today";
 
 

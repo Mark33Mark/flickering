@@ -1,28 +1,65 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Nav } from "react-bootstrap";
+
+import React, { useEffect, useState }   from "react";
+import { Link }                         from "react-router-dom";
+import { Nav }                          from "react-bootstrap";
 
 import { useParams }                    from 'react-router-dom';
 import { useQuery }                     from '@apollo/client';
 import { QUERY_USER, GET_ME }           from '../utils/queries';
 import Auth                             from "../utils/auth";
 
+
 const Landing = () => {
 
-// =====================================================================
-
-const { username: userParam } = useParams();
-const { loading, data } = useQuery(userParam ? QUERY_USER : GET_ME, {
-    variables: { username: userParam },
-});
-
-const user = data?.me || data?.user || {};
+    const [supportsPWA, setSupportsPWA]     = useState(false);
+    const [promptInstall, setPromptInstall] = useState(null);
     
-if (loading) {
-    return ( <div>Loading... </div> );
-}
+    useEffect(() => {
 
-const anyoneLoggedIn = !user?.username ? "Hi Visitor": `Welcome ${user.username}`;
+        const handler = event => {
+            event.preventDefault();
+            console.log("PWA install effect triggered :D");
+            setSupportsPWA(true);
+            setPromptInstall(event);
+        };
+
+        window.addEventListener("beforeinstallprompt", handler);
+
+        return () => window.removeEventListener("transitionend", handler);
+    }, []);
+
+
+    const { username: userParam } = useParams();
+    const { loading, data } = useQuery(userParam ? QUERY_USER : GET_ME, {
+        variables: { username: userParam },
+    });
+
+    const user = data?.me || data?.user || {};
+    
+    if (loading) {
+        return ( <div>Loading... </div> );
+    }
+
+    const anyoneLoggedIn = !user?.username ? "Hi Visitor": `Welcome ${user.username}`;
+
+
+// === PWA Install Button ===================================================
+    
+    let toggleVis = "block";
+
+    const onClick = event => {
+        event.preventDefault();
+
+        if (!promptInstall) {
+            return;
+        }
+        promptInstall.prompt();
+    };
+    
+    if (!supportsPWA) {
+            toggleVis = "none";
+            return null;
+    }
 
 
 // =====================================================================
@@ -33,7 +70,7 @@ return (
                 <Nav.Link as={Link} to="/">
                     <img
                         alt=""
-                        src="./logo512.png"
+                        src="../images/logo512.png"
                         width="100%"
                         height="auto"
                         style={{position:"relative"}}
@@ -67,6 +104,18 @@ return (
                     }
 
                 </div>
+
+                <button
+                    className="btn-pwa-install"
+                    aria-label="Install Flickering application."
+                    title="Install PWA application"
+                    onClick={onClick}
+                    style = {{ display:`${toggleVis}`}}
+                    >
+
+                    Install Flickering?
+
+                </button>
 
             </div>
         </>

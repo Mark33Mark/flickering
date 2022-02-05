@@ -9,11 +9,11 @@ const typeDefs = gql`
     questions: [Questions]
     testCount: Int
   }
-  type Questions{
+  type Questions {
     _id: ID
-    answers: [Int!]! 
-    user: String
     createdAt: String
+    user: String
+    answers: [Int!]! 
     notes: [Note]
   }
   type Note {
@@ -26,6 +26,8 @@ const typeDefs = gql`
     user: User
   }
   type Query {
+    getUsers: [User]
+    getTests(username: String!): [Questions]
     user(username: String!): User
     me: User
   }

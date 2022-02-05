@@ -3,16 +3,13 @@
 
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" href="./images/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="Emotion tracker with login, graphical presentation and random advisor" />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-        manifest.json provides metadata used when your web app is installed on a
-        user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-      -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="apple-touch-icon" href=".images/logo192.png" />
+
+    <link rel="manifest" href="./manifest.json" />
     
     <title>Flickering</title>
 
@@ -22,6 +19,27 @@
     <noscript>JavaScript has to be enabled for this app to run.</noscript>
     <div id="root"></div>
     
+
+    <script>
+      if ("serviceWorker" in navigator) {
+
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./serviceworker.js")
+
+            .then( ( registration ) => 
+              // Registration was successful
+              console.log("service-worker registration successful with scope: ", registration.scope)
+            )
+          
+            .catch( (error) =>  
+              // registration failed :(
+              console.log("service-worker registration failed: ", error));
+
+          } )
+      }
+
+      </script>
+
   </body>
 
 </html>

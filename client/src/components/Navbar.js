@@ -7,19 +7,23 @@ import Auth                       from "../utils/auth";
 
 const AppNavbar = () => {
 
+  const refreshPage = () =>  { 
+    window.location.href = window.location.origin +  "/";
+  }; 
+
   return ( 
     <>
       <Navbar bg="dark" variant="dark" expand="lg" >
         <Container fluid style={{maxWidth:"500px"}}>
-          <Navbar.Brand as={Link} to="/">
-          <img
-              alt=""
-              src="./logo192.png"
-              width="100"
-              height="auto"
-              className="d-inline-block align-top pr-3"
-          />
-          </Navbar.Brand>          
+          <Link to= "/" onClick={ refreshPage }>
+            <img
+                alt=""
+                src="./images/logo192.png"
+                width="100"
+                height="auto"
+                className="d-inline-block align-top pr-3"
+            />
+          </ Link>      
           <Navbar.Toggle aria-controls="responsive-navbar-nav"  />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ml-auto">
