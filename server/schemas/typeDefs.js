@@ -9,6 +9,7 @@ const typeDefs = gql`
     questions: [Questions]
     testCount: Int
   }
+
   type Questions {
     _id: ID
     createdAt: String
@@ -16,25 +17,33 @@ const typeDefs = gql`
     answers: [Int!]! 
     notes: [Note]
   }
+
   type Note {
     _id: ID
     noteText: String
     createdAt: String
   }
+
   type Auth {
     token: ID!
     user: User
   }
+
   type Query {
     getUsers: [User]
     getTests(username: String!): [Questions]
+    getNotes(username: String): [Note]
     user(username: String!): User
     me: User
   }
+
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
+    loginName(username: String!, password: String!): Auth
     addTest(answers: [Int]! ): Questions
+    addNote(questionId: ID!, noteText: String!):Questions
+    removeNote(questionsId: ID!): Questions
   }
 `;
 

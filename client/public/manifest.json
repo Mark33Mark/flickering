@@ -1,19 +1,20 @@
 {
-  "short_name": "Flickering",
   "name": "Flickering - emotions tracking app.",
+  "description": "An application for tracking your emotions.",
+  "short_name": "Flickering",
   "icons": [
     {
-      "src": "images/favicon.ico",
+      "src": "favicon.ico",
       "sizes": "64x64",
       "type": "image/x-icon"
     },
     {
-      "src": "images/logo192.png",
+      "src": "logo192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "images/logo512.png",
+      "src": "logo512.png",
       "type": "image/png",
       "sizes": "512x512"
     },
@@ -24,10 +25,9 @@
       "purpose": "maskable"
     }
   ],
-  "orientation": "portrait",
   "start_url": ".",
   "display": "standalone",
-  "description": "An application for tracking your emotions.",
+  "orientation": "portrait",
   "theme_color": "#000000",
   "background_color": "#ffffff"
 }

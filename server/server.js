@@ -5,6 +5,7 @@ const { ApolloServer }        = require( "apollo-server-express" );
 const db                      = require( "./config/connection" );
 const { typeDefs, resolvers } = require( "./schemas" );
 const { authMiddleware }      = require( "./utils/auth" );
+var enforce                   = require('express-sslify');
 
 const app     = express();
 const PORT    = process.env.PORT || 3001;
@@ -20,6 +21,9 @@ server.applyMiddleware({ app });
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// installed this package to get all ticks in Lighthouse PWA test for installable.
+app.use(enforce.HTTPS({ trustProtoHeader: true }));
 
 // if we"re in production, serve client/build as static assets
 if (process.env.NODE_ENV === "production") {

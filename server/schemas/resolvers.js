@@ -18,12 +18,13 @@ const resolvers = {
 
     getTests: async ( parent, { username }) => {
       const params = username ? { username } : {};
-      return await Questions.find( params ).sort({ createdAt: -1 });
+      return await Questions.find( params ).sort({createdAt: -1 });
     },
-    
-    // getTests: async () => {
-    //   return await Questions.find({}).sort({ createdAt: -1 });
-    // },
+
+    getNotes: async ( parent, { username }) => {
+      const params = username ? { username } : {};
+      return await Questions.find( params ).sort({createdAt: -1 });
+    },
     
     me: async ( parent, args, context ) => {
       if ( context.user ) {
@@ -44,6 +45,7 @@ const resolvers = {
       },
       
       login: async ( parent, { email, password } ) => {
+          console.log(email);
           const user = await User.findOne( { email } );
         
           if ( !user ) {
@@ -60,7 +62,27 @@ const resolvers = {
           return { token, user };
       },
 
-      addTest: async ( parent, { answers }, context ) => {
+      loginName: async ( parent, { username, password } ) => {
+        
+        console.log(username);
+
+        const user = await User.findOne( { username } );
+      
+        if ( !user ) {
+          throw new AuthenticationError( "Incorrect credentials" );
+        }
+      
+        const correctPw = await user.isCorrectPassword( password );
+      
+        if ( !correctPw ) {
+          throw new AuthenticationError( "Incorrect credentials" );
+        }
+      
+        const token = signToken( user );
+        return { token, user };
+    },
+
+    addTest: async ( parent, { answers }, context ) => {
         
         if (context.user) {
           const answered = await Questions.create({ 
@@ -76,6 +98,42 @@ const resolvers = {
         return answered;
         }
         throw new AuthenticationError("Please log in to submit your emotion status.");
+    },
+
+    addNote: async (parent, { questionId, noteText }, context) => {
+
+      if (context.user) {
+        return Questions.findOneAndUpdate(
+          { _id: questionId },
+          {
+            $addToSet: {
+              notes: { noteText },
+            },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+
+    removeNote: async (parent, { questionsId, noteId }, context) => {
+      if (context.user) {
+        return Questions.findOneAndUpdate(
+          { _id: questionsId },
+          {
+            $pull: {
+              comments: {
+                _id: noteId,
+              },
+            },
+          },
+          { new: true }
+        );
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
 
   }

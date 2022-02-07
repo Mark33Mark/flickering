@@ -14,31 +14,35 @@ const AppNavbar = () => {
   return ( 
     <>
       <Navbar bg="dark" variant="dark" expand="lg" >
-        <Container fluid style={{maxWidth:"500px"}}>
+        <Container fluid style={{width:"600px"}}>
           <Link to= "/" onClick={ refreshPage }>
             <img
                 alt=""
-                src="./images/logo192.png"
-                width="100"
+                src="./logo192.png"
+                width="90"
                 height="auto"
-                className="d-inline-block align-top pr-3"
+                style={{marginLeft:"-5rem"}}
+                className="align-top pr-3"
             />
           </ Link>      
           <Navbar.Toggle aria-controls="responsive-navbar-nav"  />
+
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="ml-auto">
+            <Nav className="mr-0 mb-2 mb-lg-0" >
 
                 {/* if user is logged in show different menu options */}
                 {Auth.loggedIn() 
                 ? ( 
                     <>
-                      <Nav.Link style={{cursor: "pointer"}} as={Link} to="/questions">
-                        Questions
-                      </Nav.Link>
-                      <Nav.Link style={{cursor: "pointer"}} as={Link} to="/advisor">
-                        Advisor
-                      </Nav.Link>
-                      <Nav.Link style={{cursor: "pointer"}} onClick={Auth.logout}>Logout</Nav.Link>
+
+                        <Nav.Link style={{cursor: "pointer", textAlign: "right"}} as={Link} to="/questions">
+                          Questions
+                        </Nav.Link>
+                        <Nav.Link style={{cursor: "pointer", textAlign: "right"}} as={Link} to="/advisor">
+                          Advisor
+                        </Nav.Link>
+                        <Nav.Link style={{cursor: "pointer", textAlign: "right"}} onClick={Auth.logout}>Logout</Nav.Link>
+
                       
                     </>  
                   ) 

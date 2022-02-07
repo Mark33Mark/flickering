@@ -58,8 +58,8 @@ const Question = ({ title, subtitle }) => {
 const Questionnaire = () => {
 
   const [ addTest ] = useMutation( ADD_TEST );
-  const handleButtonClick = async ( event ) => {
 
+  const handleButtonClick = async ( event ) => {
     event.preventDefault();
 
     const validateQuestionairre = (!answerArray.includes(""))
@@ -70,7 +70,7 @@ const Questionnaire = () => {
 
     try {
         // eslint-disable-next-line
-        const { data } = addTest({ 
+        const { data } = await addTest({ 
           variables: {
             answers: answerArray,
             user: Auth.getProfile().data.username,

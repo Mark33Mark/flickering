@@ -10,12 +10,10 @@ import Login              from "./pages/Login";
 import Signup             from "./pages/Signup";
 import Landing            from "./pages/Landing";
 import Questionnaire      from "./pages/Questionnaire";
-import History            from "./pages/History";
 import Today              from "./pages/Today";
+import Notes              from "./pages/Notes";
 import Advisor            from "./pages/Advisor";
 import NoMatch            from "./pages/NoMatch";
-
-
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -49,21 +47,17 @@ function App() {
       
       <Router>
 
-        <>
         <Switch>
-
-              <Route exact path="/" component={Landing} />              
+              <Route exact path="/" component={Landing} />  
               <Route exact path="/login" component={Login} />
-              <Route exact path="/signup" component={Signup} />
+              <Route exact path="/signup" component={Signup} />            
               <Route exact path="/questions" component={Questionnaire} />
-              <Route exact path="/history" component={History} />
               <Route exact path="/today" component={Today} />
+              <Route exact path="/notes" component={Notes} />
               <Route exact path="/advisor" component={Advisor} />
-              <Route component={NoMatch} />
+              <Route component ={NoMatch} />
             
           </Switch>
-
-        </>
 
       </Router>
     </ApolloProvider>

@@ -27,6 +27,20 @@ query getTests ($username: String!) {
       }
   }
 }
+`;
+
+export const QUERY_NOTES = gql`
+query getNotes ($username: String!){
+  user(username: $username){
+    questions{
+        notes{
+          _id
+          noteText
+          createdAt
+        }
+      }   
+    }
+}
   `;
 
 export const QUERY_USER = gql`
@@ -42,7 +56,7 @@ export const QUERY_USER = gql`
       }
     }
   }
-  `;
+`;
 
 
 export const GET_ME = gql`

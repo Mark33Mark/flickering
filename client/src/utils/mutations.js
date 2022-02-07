@@ -13,6 +13,19 @@ export const LOGIN_USER = gql`
   }
 `;
 
+export const LOGIN_USER_NAME = gql`
+  mutation loginName( $username: String!, $password: String! ) {
+    loginName( username: $username, password: $password ) {
+      token
+      user {
+        _id
+        username
+        email
+      }
+    }
+  }
+`;
+
 export const ADD_USER = gql`
   mutation addUser( $username: String!, $email: String!, $password: String! ) {
     addUser( username: $username, email: $email, password: $password ) {
@@ -36,6 +49,36 @@ export const ADD_TEST = gql`
         _id
         noteText
         createdAt
+      }
+    }
+  }
+`;
+
+export const ADD_NOTE = gql`
+  mutation addNote($questionId: ID!, $noteText: String!) {
+    addNote(questionId: $questionId, noteText: $noteText) {
+      _id
+      answers
+      user
+      createdAt
+      notes {
+        _id
+        noteText
+      }
+    }
+  }
+`;
+
+export const REMOVE_NOTE = gql`
+  mutation removeNote($questionId: ID!, $noteId: ID!) {
+    removeNote(questionId: $questionId, noteId: $noteId) {
+      _id
+      answers
+      user
+      createdAt
+      notes {
+        _id
+        noteText
       }
     }
   }
