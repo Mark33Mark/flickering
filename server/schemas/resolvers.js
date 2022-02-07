@@ -119,13 +119,16 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
 
-    removeNote: async (parent, { questionsId, noteId }, context) => {
+    removeNote: async (parent, { questionId, noteId }, context) => {
+      
+      console.log({ questionId, noteId } );
+
       if (context.user) {
         return Questions.findOneAndUpdate(
-          { _id: questionsId },
+          { _id: questionId },
           {
             $pull: {
-              comments: {
+              notes: {
                 _id: noteId,
               },
             },

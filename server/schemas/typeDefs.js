@@ -10,6 +10,12 @@ const typeDefs = gql`
     testCount: Int
   }
 
+  type Order {
+    _id: ID
+    purchaseDate: String
+    user: [User]
+}
+
   type Questions {
     _id: ID
     createdAt: String
@@ -29,21 +35,28 @@ const typeDefs = gql`
     user: User
   }
 
+  type Checkout {
+    session: ID
+}
+
   type Query {
     getUsers: [User]
     getTests(username: String!): [Questions]
     getNotes(username: String): [Note]
     user(username: String!): User
     me: User
+    order(_id: ID!): Order
+    checkout(tutors: [ID]!): Checkout
   }
 
   type Mutation {
+    addOrder(tutors: [ID]!): Order
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     loginName(username: String!, password: String!): Auth
     addTest(answers: [Int]! ): Questions
-    addNote(questionId: ID!, noteText: String!):Questions
-    removeNote(questionsId: ID!): Questions
+    addNote(questionsId: ID!, noteText: String!):Questions
+    removeNote(questionId: ID!, noteId: ID!): Questions
   }
 `;
 

@@ -13,6 +13,7 @@ import Questionnaire      from "./pages/Questionnaire";
 import Today              from "./pages/Today";
 import Notes              from "./pages/Notes";
 import Advisor            from "./pages/Advisor";
+import About              from "./pages/About";
 import NoMatch            from "./pages/NoMatch";
 
 const httpLink = createHttpLink({
@@ -55,6 +56,7 @@ function App() {
               <Route exact path="/today" component={Today} />
               <Route exact path="/notes" component={Notes} />
               <Route exact path="/advisor" component={Advisor} />
+              <Route exact path="/about" component={About} />
               <Route component ={NoMatch} />
             
           </Switch>

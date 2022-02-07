@@ -35,9 +35,6 @@ import Auth                 from "../utils/auth";
 export default function NotesHistory() {
 
 
-
-
-
     const { loading, data } = useQuery( QUERY_USER_TESTS, {
         variables: { username: Auth.getProfile().data.username },
     });
@@ -57,10 +54,6 @@ export default function NotesHistory() {
     const answeredQ4 = test.map((val)=> val.answers[3] ).slice( startAnswers ,test.length )
     const answeredQ5 = test.map((val)=> val.answers[4] ).slice( startAnswers ,test.length )
     const created    = test.map((val)=> val.createdAt ).slice( startAnswers ,test.length )
-
-    console.log( answeredQ1, answeredQ2, answeredQ3, answeredQ4, answeredQ5 ) 
-    console.log( created )
-
 
     const options = {
         responsive: true,
