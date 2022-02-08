@@ -1,3 +1,4 @@
+
 const addDateSuffix = (date) => {
   let dateStr = date.toString();
 
@@ -38,6 +39,8 @@ module.exports = (
     11: monthLength === 'short' ? 'Dec' : 'December',
   };
 
+  // needed for Heroku to forcefully adjust to local time.  Hacky but will do for now.
+  // const dateObj = new Date(timestamp + 11 * (60 * 60 * 1000) );
   const dateObj = new Date(timestamp);
   const formattedMonth = months[dateObj.getMonth()];
 

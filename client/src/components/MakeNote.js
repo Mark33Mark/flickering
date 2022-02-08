@@ -30,6 +30,8 @@ const MakeNote = ( tests ) => {
             });
 
             setNoteText("");
+            // using this method as <Redirect> was not working
+            window.location.href= window.location.origin +  "/notes";
 
             } catch (err) {
             console.error(err);
