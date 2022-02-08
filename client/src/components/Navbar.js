@@ -21,7 +21,7 @@ const AppNavbar = () => {
                 src="./logo192.png"
                 width="90"
                 height="auto"
-                style={{marginLeft:"-5rem", paddingRight:"1rem"}}
+                style={{marginLeft:"0", paddingRight:"1rem"}}
                 className="align-top pr-3"
             />
           </ Link>      
