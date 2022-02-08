@@ -55,7 +55,8 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     loginName(username: String!, password: String!): Auth
     addTest(answers: [Int]! ): Questions
-    addNote(questionsId: ID!, noteText: String!):Questions
+    addNote(questionId: ID!, noteText: String!):Questions
+    updateNote(questionId: ID!, noteId: ID!):Questions
     removeNote(questionId: ID!, noteId: ID!): Questions
   }
 `;

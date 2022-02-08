@@ -37,34 +37,33 @@ const resolvers = {
 
   Mutation: {
 
-      addUser: async ( parent, args ) => {
-          const user = await User.create( args );
-          const token = signToken( user );
-        
-          return { token, user };
-      },
+    addUser: async ( parent, args ) => {
       
-      login: async ( parent, { email, password } ) => {
-          console.log(email);
-          const user = await User.findOne( { email } );
-        
-          if ( !user ) {
-            throw new AuthenticationError( "Incorrect credentials" );
-          }
-        
-          const correctPw = await user.isCorrectPassword( password );
-        
-          if ( !correctPw ) {
-            throw new AuthenticationError( "Incorrect credentials" );
-          }
-        
-          const token = signToken( user );
-          return { token, user };
-      },
+        const user = await User.create( args );
+        const token = signToken( user );
+      
+        return { token, user };
+    },
+      
+    login: async ( parent, { email, password } ) => {
 
-      loginName: async ( parent, { username, password } ) => {
-        
-        console.log(username);
+      const user = await User.findOne( { email } );
+    
+      if ( !user ) {
+        throw new AuthenticationError( "Incorrect credentials" );
+      }
+    
+      const correctPw = await user.isCorrectPassword( password );
+    
+      if ( !correctPw ) {
+        throw new AuthenticationError( "Incorrect credentials" );
+      }
+    
+      const token = signToken( user );
+      return { token, user };
+    },
+
+    loginName: async ( parent, { username, password } ) => {
 
         const user = await User.findOne( { username } );
       
@@ -119,10 +118,28 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
 
+    updateNote: async (parent, { questionId, noteId, noteText }, context) => {
+
+      if (context.user) {
+        return Questions.findOneAndUpdate(
+
+          { _id: questionId, "note._id": noteId },
+          {
+            $set: {
+              notes: { noteText },
+            },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+
     removeNote: async (parent, { questionId, noteId }, context) => {
       
-      console.log({ questionId, noteId } );
-
       if (context.user) {
         return Questions.findOneAndUpdate(
           { _id: questionId },

@@ -13,7 +13,7 @@ const AppNavbar = () => {
 
   return ( 
     <>
-      <Navbar bg="dark" variant="dark" expand="lg" >
+      <Navbar bg="dark" variant="dark" expand="md" >
         <Container fluid style={{width:"600px"}}>
           <Link to= "/" onClick={ refreshPage }>
             <img
@@ -21,7 +21,7 @@ const AppNavbar = () => {
                 src="./logo192.png"
                 width="90"
                 height="auto"
-                style={{marginLeft:"-5rem"}}
+                style={{marginLeft:"-5rem", paddingRight:"1rem"}}
                 className="align-top pr-3"
             />
           </ Link>      
@@ -35,21 +35,36 @@ const AppNavbar = () => {
                 ? ( 
                     <>
 
-                        <Nav.Link style={{cursor: "pointer", textAlign: "right"}} as={Link} to="/questions">
-                          Questions
-                        </Nav.Link>
-                        <Nav.Link style={{cursor: "pointer", textAlign: "right"}} as={Link} to="/advisor">
-                          Advisor
-                        </Nav.Link>
-                        <Nav.Link style={{cursor: "pointer", textAlign: "right"}} onClick={Auth.logout}>Logout</Nav.Link>
+                      <Nav.Link style={{cursor: "pointer", textAlign: "right"}} as={Link} to="/questions">
+                        Questions<span style={{ paddingLeft:"1rem"}}>|</span>
+                      </Nav.Link>
+                      <Nav.Link style={{cursor: "pointer", textAlign: "right"}} as={Link} to="/today">
+                        Today<span style={{ paddingLeft:"1rem"}}>|</span>
+                      </Nav.Link>
+                      <Nav.Link style={{cursor: "pointer", textAlign: "right"}} as={Link} to="/notes">
+                        Notes<span style={{ paddingLeft:"1rem"}}>|</span>
+                      </Nav.Link>
+                      <Nav.Link style={{cursor: "pointer", textAlign: "right"}} as={Link} to="/advisor">
+                        Advisor<span style={{ paddingLeft:"1rem"}}>|</span>
+                      </Nav.Link>
+                      <Nav.Link style={{cursor: "pointer", textAlign: "right"}} as={Link} to="/about">
+                        About<span style={{ paddingLeft:"1rem"}}>|</span>
+                      </Nav.Link>
+                      <Nav.Link style={{cursor: "pointer", textAlign: "right"}} onClick={Auth.logout}>
+                        Logout<span style={{ paddingLeft:"1rem"}}>|</span>
+                      </Nav.Link>
 
                       
                     </>  
                   ) 
                 : ( 
                   <div >
-                    <Nav.Link style={{display:"inline", color:"white", cursor: "pointer" }} as={Link} to="/login">login</Nav.Link> / 
-                    <Nav.Link style={{display:"inline", color:"white", cursor: "pointer"}} as={Link} to="/signup">signup</Nav.Link>
+                    <Nav.Link style={{display:"inline", color:"white", cursor: "pointer" }} as={Link} to="/login">
+                      login
+                    </Nav.Link> / 
+                    <Nav.Link style={{display:"inline", color:"white", cursor: "pointer"}} as={Link} to="/signup">
+                      signup
+                    </Nav.Link>
                   </div>
                   )}
 

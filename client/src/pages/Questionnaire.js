@@ -1,5 +1,6 @@
 
 import React,  { useEffect, useState }           from "react";
+import { Link }                                  from "react-router-dom";
 import Navbar                                    from "../components/Navbar";
 
 import { useMutation }                           from "@apollo/client";
@@ -87,31 +88,44 @@ const Questionnaire = () => {
   };
 
   return ( 
+
     <>
-      <Navbar />
 
-      <div style={{height:"85vh", backgroundColor:"black", color: "white", maxWidth:"450px", margin: "0 auto"}}> 
-          
-          <h3 style={{paddingTop:"1.5rem", color:"orange", textAlign: "center", fontWeight:"600",}}> 
-            {Auth.getProfile().data.username}'s Emotion Tracker 
-          </h3>
+      {Auth.loggedIn() ? (
 
-          <div className="Questions" style={{height:"auto"}}>
-            <Question title={"Q1"} subtitle={". I'm feeling satisfied with my sleep?"} />
-            <Question title={"Q2"} subtitle={". If asked how I'm feeling, I can easily identify my emotions?"} />
-            <Question title={"Q3"} subtitle={". Feeling relaxed, not stressed or anxious?"} />
-            <Question title={"Q4"} subtitle={". My social relationships are supportive and rewarding?"} />
-            <Question title={"Q5"} subtitle={". Feeling close to other people?"} />
+        <>
+          <Navbar />
+
+          <div style={{height:"85vh", backgroundColor:"black", color: "white", maxWidth:"450px", margin: "0 auto"}}> 
+              
+              <h3 style={{paddingTop:"1.5rem", color:"orange", textAlign: "center", fontWeight:"600",}}> 
+                {Auth.getProfile().data.username}'s Emotion Tracker 
+              </h3>
+
+              <div className="Questions" style={{height:"auto"}}>
+                <Question title={"Q1"} subtitle={". I'm feeling satisfied with my sleep?"} />
+                <Question title={"Q2"} subtitle={". If asked how I'm feeling, I can easily identify my emotions?"} />
+                <Question title={"Q3"} subtitle={". Feeling relaxed, not stressed or anxious?"} />
+                <Question title={"Q4"} subtitle={". My social relationships are supportive and rewarding?"} />
+                <Question title={"Q5"} subtitle={". Feeling close to other people?"} />
+              </div>
+
+              <div style={{maxWidth:"450px", margin:"0 auto",}}>
+                <button className="button-tracker" onClick={handleButtonClick}>
+                    <span>Submit</span>
+                </button>
+              </div>
+
           </div>
+        </>   
 
-          <div style={{maxWidth:"450px", margin:"0 auto",}}>
-            <button className="button-tracker" onClick={handleButtonClick}>
-                <span>Submit</span>
-            </button>
-          </div>
-
-      </div>
-
+      ) : (
+              <p style={{color:"white", margin:"20% 40%"}}>
+                  Please log in to do the questionnaire. <br />
+                  <Link to="/login">login</Link>
+              </p>
+          )}
+            
     </>
   )
 }

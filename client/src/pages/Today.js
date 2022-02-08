@@ -40,6 +40,8 @@ export default function Today() {
     const recentTest = test[test.length-1].answers
     const testDate = test[test.length-1].createdAt
 
+    console.log(recentTest)
+
     const graphData = {
         labels: ["Refreshed", "Mindful / Self-Aware", "Relaxed / Calm", "Supported", "Attached"],
         datasets: [

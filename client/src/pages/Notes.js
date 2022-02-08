@@ -14,36 +14,35 @@ export default function Notes() {
     
         <>
         
-        {Auth.loggedIn() ? (
-            
-            <>
-                <Navbar />
+            {Auth.loggedIn() ? (
+                
+                <>
+                    <Navbar />
 
-                    <div style={{color: "white", maxWidth:"400px", margin:"0 auto" }}>
+                        <div style={{color: "white", maxWidth:"400px", margin:"0 auto" }}>
 
-                        <h3 style={{color:"white", textAlign: "center", margin:"1rem auto"}}> 
+                            <h3 style={{color:"white", textAlign: "center", margin:"1rem auto"}}> 
 
-                            {Auth.getProfile().data.username}'s <br /> 
-                            Notes History
-                        </h3>
-                    
-                        <h5 style={{fontSize:"1rem", color: "white", marginLeft:"-10rem"}}>
-                            previous 12 responses:
-                        </h5>
-                    </div>
+                                {Auth.getProfile().data.username}'s <br /> 
+                                Notes History
+                            </h3>
+                        
+                            <h5 style={{fontSize:"1rem", color: "white", marginLeft:"-10rem"}}>
+                                previous 12 responses:
+                            </h5>
+                        </div>
 
-                    <NotesHistory />
+                        <NotesHistory />
                 </>
-            
+                
             ) : (
-                    <p>
-                    Please log in to save a note. <br />
-                    <Link to="/login">login</Link>
+                    <p style={{color:"white", margin:"20% 40%"}}>
+                        Please log in to save a note. <br />
+                        <Link to="/login">login</Link>
                     </p>
                 )}
             
-            </>
-            
-                
+        </>
+
     )
 }

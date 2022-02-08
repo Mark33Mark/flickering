@@ -22,8 +22,8 @@ const Landing = () => {
 
     const anyoneLoggedIn = !user?.username ? "Hi Visitor": `Welcome ${user.username}`;
 
-
 return ( 
+
         <>
             <div style={{backgroundColor:"black", height:"100vh", color: "white", maxWidth:"400px", margin: "0 auto"}}> 
                 <Banner />
@@ -32,8 +32,8 @@ return (
                     <p style={{textAlign:"center", fontSize:"2rem", padding:"0.25rem 1rem"}}> {anyoneLoggedIn}</p>
                     <p style={{textAlign:"center", fontSize:"1rem", padding:"0.25rem 1rem"}}> 
                         Our moods fluctuate / flicker.  <br />
-                        This is a space to track your emotions  to identify and help manage those triggers that can cause 
-                        negative emotions.  Included are some other tools to help keep the ‘feel good’ switched on.
+                        This is a space to track your emotions and help you identify any triggers causing
+                        negative emotions.  <br/>Included are some other tools to see if we can keep that ‘feel good’ switched on.
                     </p>
 
                     { 
@@ -50,11 +50,8 @@ return (
                     </div>
                     )
                     }
-
                 </div>
-
-            </div>
-
+            </div>                  
         </>
     );
 

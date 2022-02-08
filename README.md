@@ -2,7 +2,7 @@
 
 [![webpage](./assets/myWebpage.png)](https://flickering.herokuapp.com)  [![github](./assets/PNG_github_commits_logo.png)](https://github.com/Mark33Mark/flickering)  
 
-# USYD-FSF Unit 23 Project 3  
+# USYD-FSF Unit 23 - Project 3  
  
 ## MERN: Flickering
 
@@ -31,21 +31,45 @@
 
 **Why this project?**  
 
-*  
+* The 2017 Gallup Negative Experience Index—a snapshot of the world’s emotional state drawn from 154,000 people in 145 countries—recorded its highest-ever levels of stress, sadness, anger, worry and physical pain. In a disruptive economy, the disrupted feel ever more vulnerable, as the pace of radical change increases while their ability to plan for and react to it decreases.  
+
+* For many people, this is an increasingly anxious, unhappy and lonely world. Complex transformations—societal, technological and work-related—are having a profound impact on people’s lived experiences.  According to the World Economic Forum’s Global Risks Report 2019: “A common theme is psychological stress related to a feeling of lack of control in the face of uncertainty.”  
+
+* Noting that mental health problems now impact over 700 million people worldwide, the Global Risks Report contends that the human cost of global risks like —declining psychological and emotional well-being—represents a significant threat with corrosive effects on social cohesion and politics.  
+
 
 **What problem does this project solve?**  
 
-* .  
+* Mood tracking is therapy. It can help you prevent the early symptoms of mental health issues like depression, panic attacks, and bipolar disorders. However, this doesn’t mean that it’s only for those with mental health problems.  
+
+* Keeping a mood diary lets you become more aware of the feelings you have and the things that cause them. When you understand yourself, you are better able to determine how to become happier.
+
+*  Some reasons for mood tracking:  
+   *  Identify / label your triggers.  
+   *  By actively tracking mood, you are present with yourself / mindful and able to honestly check-in.  This process is more likely to help you pin point your triggers or at least have something to discuss with your support network.  
+   *  Help manage your mood swings.  
+   * The process of doing something to monitor your emotions helps develop a strategy, in turn giving you a sense of control as it should help you to see the emotional impact of your choices – whether they are choices in or out of your control.  
+   *  Mood tracking can be an important trigger, prompt for you to be positive about your life and wellbeing.  
+   *  Keep informed by having a record of mood over a period of time can be a good tool for your support network to help you.  
+
 
 **Lessons learnt?**  
 
-*  
+*  Time management - a lot of features for this 1st concept had to be abandoned.  Some of those features included a feel good / brag wall for the user to have images that spark positive emotions.  A lot of time was lost exploring existing packages to achieve this feature.  The outcome of a number of days of exploration is that there isn't an off the shelf package.  
+
+*  React is a great technology for the efficient production of commercially available web based applications.  The structural nature of React mean you can work quickly and expediency in any commercial produce is a critical criteria for commercial success.
+
+* Mongoose DB, once you have learnt the syntax, is an excellent way for storing and retrieving data.  Object based data management is liberating compared to the rigid rules of SQL alternatives.
 
 ---
 
 ### 2. Features  
 
+* Minimalism.  Upon logging in, the user is immediately taken to the 5 question survey.  On submitting the survey, they are taken to a summary of their response with the facility to add a note.  
 
+* Should the user prefer to go directly to their data dashboard, they can select "Notes" from the menu that opens an environment that has all their notes, a graph depicting the last 12 responses, and the facility to add notes.  
+
+* Complies with Progressive Web Application requirements and therefore provides the user with the facility to install the app, improving usage / accessibility.
 
 ---
 
@@ -77,8 +101,10 @@ You can modify the code as you need.
 ### 5. Credits  
 
 *  React online documentation,
-*  Stack Overflow forums.  
+*  Stack Overflow forums - huge gratitude to all the developers that give their time to answer questions on this forum.  
 *  https://www.apollographql.com/blog/graphql/basics/graphql-vs-rest/
+* Adrian Hajdin - JS Mastery - various resources from his work was referred to for the development of this application.  
+
 ---
 
 ### 6. License  
@@ -117,13 +143,23 @@ You can modify the code as you need.
  All actions not checked are still to be completed:  
 
 [x]  This application satisfies the following acceptance criteria:  
-   *   A
+   *  Uss React for the front end.
+   *  Uses GraphQL with a Node.js and Express.js server.  
+   *  Uses MongoDB and the Mongoose ODM for the database.  
+   *  Uses queries and mutations for retrieving, adding, updating, and deleting data.  
+   *  Is deployed using Heroku (with data).  
+   *  Has a polished UI.  
+   *  Is responsive.  
+   *  Is interactive (i.e. accepts and respond to user input).  
+   *  Includes authentication (JWT).  
+   *  Protects sensitive API key information on the server.  
+   *  Has a clean repository that meets quality coding standards (file structure, naming conventions, best practices for class and id naming conventions, indentation, high-quality comments, etc.).  
+   *  Has a high-quality README (with unique name, description, technologies used, screenshot, and link to deployed application).  
 
 [x]  Application has an Apollo Server, using GraphQL queries and mutations to fetch and modify data, replacing the existing RESTful API.  
-[x]  Use an Apollo Server and apply it to the Express.js server as middleware.  
-[x]  Include schema settings for resolvers and typeDefs as outlined in the homework instructions.  
-[x]  Modify the existing authentication middleware to work in the context of a GraphQL API.  
-[x]  Use an Apollo Provider so that the application can communicates with the Apollo Server.  
+[x]  Uses an Apollo Server and apply it to the Express.js server as middleware.  
+[x]  Includes schema settings for resolvers and typeDefs as outlined in the homework instructions.  
+[x]  Is an installable PWA application.
 [x]  Application is deployed to Heroku [flickering.herokuapp.com](https://flickering.herokuapp.com).  
 [x]  Application loads with no errors.  
 [x]  User experience is intuitive and easy to navigate.  
@@ -141,4 +177,4 @@ You can modify the code as you need.
 
 ---
 
-[Back to the top](#usyd-fsf-unit-23-project)  
+[Back to the top](#usyd-fsf-unit-23---project-3)  
